@@ -1,20 +1,12 @@
 const request = require('request');
 const express = require("express");
 const router = express.Router();
-const api = require("../controllers/apiController");
+const Project = require ('../models/project');
 
 
 //set up to work locally and or on heroku
 let Key = process.env.behanceKey || require("../env.js");
 let apiUrl = "http://www.behance.net/v2/projects?client_id=" + Key.Key +"";
-
-
-
-//get initial list of projects 
-router.get('/projects', api.listOfProjects);
-
-
-
 
 
 //get searched list of projects from text
@@ -50,5 +42,30 @@ router.get('/projects/search', function (req, res) {
 
 
 
+//get initial list of projects 
+const listOfProjects = function (req, res) {
+	console.log('/projects is working');
+	request(apiUrl, function(error, info, body){
+	let projectInfo = JSON.parse(body);
+	let PROJECTS = projectInfo.projects;
+	console.log(typeof(PROJECTS));
+	console.log(PROJECTS);
+		let projectRequest = PROJECTS.map(project => {
+			//console.log('you. should see projects up front');
+			return {
+				name: project.name,
+				//description: project.
+				//image: project.covers.original,
+				genre: project.fields
+			};
+		});
+		//console.log(projectRequest);
+		res.render('projects', { display : projectRequest });
+	});
+};
 
-module.exports = router;
+
+module.exports = {
+					listOfProjects
+				};
+

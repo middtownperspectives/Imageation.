@@ -3,12 +3,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ProjectSchema = new Schema({
-  cover: [String],
   title: String,
-  name: String,
-  field: String
+  creator: String,
+  field: String,
+  image: String
 });
 
 var Project = mongoose.model('Project', ProjectSchema);
 
-module.exports = Project;
+module.exports = ProjectSchema;
