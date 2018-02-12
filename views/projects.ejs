@@ -24,7 +24,6 @@
   <div class="col-md-3">   
 
      <form actioin="/profile" method="POST">
-      <% if (message) { %>
       <% for(var i=0; i < display.length; i++) { %>
          Project Title: <input name="projectTitle[]" value="<%= display[i].title %>"  /><br> 
          Project Field: <input name="field" value="<%= display[i].field %>" /><br> 

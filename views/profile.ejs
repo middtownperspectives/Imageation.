@@ -7,7 +7,6 @@
 				<img src="../public/images/avatar.png"> Name</h1>
 			
  <form actioin="/profile/:<%= projects.id %>" method="DELETE">
- 			<% if (message) { %>
       <% for(var i=0; i < projects.length; i++) { %>
          Project Title: <input name="title" value="<%= projects[i].title %>"  /><br> 
          Project Field: <input name="field" value="<%= projects[i].field %>" /><br> 
