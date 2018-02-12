@@ -6,14 +6,15 @@
 			<h1 class="display-4">
 				<img src="../public/images/avatar.png"> Name</h1>
 			
- <form action="/profile/delete/:<%= projects.id %>" method="DELETE">
-      <% for(var i=0; i < projects.length; i++) { %>
+    <% for(var i=0; i < projects.length; i++) { %>
+    <form action="/profile/delete/:<%= projects.id %>" method="DELETE">
+
          Project Title: <input name="title" value="<%= projects[i].title %>"  /><br> 
          Project Field: <input name="field" value="<%= projects[i].field %>" /><br> 
          Project Image: <img src= +"+"<%= projects[i].image %>"+"+ /><br> 
          <button type="submit" id="deletebtn" value="<%= projects.id %>" class="btn btn-danger" > Delete </button><br><br>
-      <% } %>
-  </form>
+  	</form>
+    <% } %>
 
 		</div>
 	</div>
