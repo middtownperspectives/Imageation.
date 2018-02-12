@@ -1,14 +1,15 @@
 // project model and schema
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var ProjectSchema = new Schema({
-  cover: [String],
+let ProjectSchema = new Schema({
   title: String,
-  name: String,
-  field: String
+  apiId: Number,
+  creator: String,
+  field: String,
+  image: String
 });
 
-var Project = mongoose.model('Project', ProjectSchema);
+const Project = mongoose.model('Project', ProjectSchema);
 
 module.exports = Project;

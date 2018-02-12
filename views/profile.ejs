@@ -1,0 +1,23 @@
+<% include ./partials/header.ejs %>
+
+<div class="main container clearfix">
+	<div class="row">
+		<div class="col-md-8">
+			<h1 class="display-4">
+				<img src="../public/images/avatar.png"> Name</h1>
+			
+ <form actioin="/profile/:<%= projects.id %>" method="DELETE">
+ 			<% if (message) { %>
+      <% for(var i=0; i < projects.length; i++) { %>
+         Project Title: <input name="title" value="<%= projects[i].title %>"  /><br> 
+         Project Field: <input name="field" value="<%= projects[i].field %>" /><br> 
+         Project Image: <img src= +"+"<%= projects[i].image %>"+"+ /><br> 
+         <button type="submit" id="deletebtn" value="<% i %>" class="btn btn-danger" > Delete </button><br><br>
+      <% } %>
+  </form>
+
+		</div>
+	</div>
+</div>
+
+<% include ./partials/footer.ejs %>

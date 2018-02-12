@@ -1,50 +1,49 @@
 const express = require ("express");
+const passport = require("passport");
+const flash = require("flash");
 const app = express();
+const morgan = require("morgan");
 const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({extended: false}));
 const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const ejs = require("ejs");
 
 //set up to work locally and or on heroku
 let Key = process.env.behanceKey || require("./env.js");
 let apiUrl = "http://www.behance.net/v2/projects?client_id=" + Key;
 
-/************
- * DATABASE *
- ************/
-//connection to heroku and local comp.
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost:27017/imageation"); 
-const db = mongoose.connection;
-
 //checking for errors on mongo database
-db.on("error", console.error.bind(console, "connection error"));
-
-
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
-
+const db = require("./models");
 
 //serves static files
-app.use("/static", express.static("public"));
+app.use(express.static(__dirname + "/public"));
+
+// back end request monitoring
+app.use(morgan('dev')); 
 
 //sets my html and scripting pages to views
-app.set("view engine", "pug");
-app.set("views", __dirname + "/views");
+app.set('views', './views');
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
+// provides the means for express to save sessions during a users experience...  maintain login and password info
+// also provides a means of providing google analitics with info for user activity
+app.use(session({ secret: "An imageation is everything", resave: true, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
+require('./config/passport')(passport);
+
 
 const loginRoutes = require("./routes/index.js");
 app.use(loginRoutes);
 const projectRoutes = require("./routes/projects.js");
 app.use(projectRoutes);
 
-// provides the means for express to save sessions during a users experience...  maintain login and password info
-// also provides a means of providing google analitics with info for user activity
-app.use(session({
-	secret: "An imageation is everything",
-	resave: true,
-	saveUninitialized: false
-}));
 
 //make user id avaiable globally
 app.use(function(req, res, next){
@@ -52,17 +51,14 @@ app.use(function(req, res, next){
 	next();
 });
 
-
-
 //----- handling errors when calling routes
-app.use((req, res, next) => {
-	const err = new Error("Not Found");
-	err.status = 404;
-	next(err);
-});
-
 app.use((err, req, res, next) => {
-	res.render("error");
+	if(err){ 
+		// let message =  "something went wrong";
+		res.render('error', { message : err.message});
+	} else 
+	console.log(err.message);
+	res.status(422).send(err);
 });
 
 /**********
@@ -73,3 +69,8 @@ app.use((err, req, res, next) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log('Express server is running on http://localhost:3000/');
 });
+
+exports.closeServer = () => {
+  server.close();
+};
+
