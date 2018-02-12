@@ -1,35 +1,40 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/user');
-const view = require("../controllers/viewsController");
+var express = require('express');
+var router = express.Router();
+// Parses information from POST
+var bodyParser = require('body-parser');
+// Used to manipulate POST methods
+var methodOverride = require('method-override');
+var passport = require("passport");
+var usersController = require('../controllers/users');
+var staticsController = require('../controllers/static');
 
 
-// GET /
-router.get('/', view.home);
+function authenticatedUser(req, res, next) {
+  // If the user is authenticated, then we continue the execution
+  if (req.isAuthenticated()) return next();
 
-// GET /register
-router.get('/register', view.signUp);
+  // Otherwise the request is always redirected to the home page
+  res.redirect('/');
+}
 
-//GET route for profile
-router.get('/profile', view.profile);
+router.get('/', staticsController.home);
 
-// Log Out logic
-router.get('logout', view.logOut);
+router.get('/signup', usersController.getSignup);
+router.post('/signup', usersController.postSignup);
 
-//login route
-router.get('/signin', view.signIn);
+router.get('/login', usersController.getLogin);
+router.post('/login', usersController.postLogin);
 
-//login route and checking existance in database
-router.post('/signin', view.checkUserExistance);
+router.route("/logout")
+  .get(usersController.getLogout);
 
-// POST /register
-router.post('/register', view.createUser);
+router.route("/secret")
+  .get(authenticatedUser, usersController.secret);
 
 // GET /about
-router.get('/about', view.about);
+router.get('/about', usersController.about);
 
 // GET /contact
-router.get('/contact', view.contact);
-
+router.get('/contact', usersController.contact);
 
 module.exports = router;
