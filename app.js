@@ -2,7 +2,8 @@ const express = require ("express");
 const passport = require("passport");
 const flash = require("flash");
 const app = express();
-const morgan = require("morgan");
+// const morgan = require("morgan");
+// app.use(morgan('dev')); // back end request monitoring
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 const cookieParser = require("cookie-parser");
@@ -21,9 +22,6 @@ const db = require("./models");
 
 //serves static files
 app.use(express.static(__dirname + "/public"));
-
-// back end request monitoring
-app.use(morgan('dev')); 
 
 //sets my html and scripting pages to views
 app.set('views', './views');

@@ -13,10 +13,12 @@ router.get('/projects', api.listOfProjects);
 //get list of favorites from database
 router.get('/profile', api.favoriteProjects);
 
-// save favorite
-router.post('/projects', api.savefavoriteProject);
+// save favorite project
+router.post('/profile', api.savefavoriteProject);
 
-router.delete('/profile/:id', api.deleteFavorite);
+//delete favorite project
+router.delete('/profile/delete/:id', api.deleteFavorite);
+
 //get searched list of projects from text
 //router.get('/projects/search', api.searchListOfProjects);
 

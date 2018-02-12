@@ -11,24 +11,21 @@ Projects.remove({}, function(err) {
   }
 });
 
-const seedProjects = [
-	
+const seedProjects = [	
 	{
 		title: "The Noname Journey",
     	creator: "Carol Dorthy",
-    	field: "Book Cover Illustration",
+    	field: "Illustration",
     	image: "http://static.djbooth.net/pics-features/rect/noname-telefone.jpg"
-	},{
+	}, {
 		title: "Zhara",
     	creator: "Kirill Polyakov",
-    	type: "Music Album Illustration",
+    	field: "Illustration",
     	image: "http://bigupmag.com/wp-content/uploads/2014/04/xhara.jpg"
 	}
 ];
 
-
 Projects.create(seedProjects, (error, project) => {
-
 	if(error) { 
 		return console.log("error" + error)};
 		console.log("Projects seeded" + project);

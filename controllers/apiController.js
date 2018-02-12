@@ -40,130 +40,40 @@ const listOfProjects = function (req, res, next) {
 	});
 };
 
-// grabbing from database
+// grabbing profile with favorite projects from database
 const favoriteProjects = (req, res, next) => {
-	db.Project.find({}, (err, projects) => {
-		if(err){ 
-			let message =  "Could not find any projects";
-			res.render('error', { message : message} );
-		} else 
+	Project.find({}, (err, projects) => {
 		console.log(projects);
-		console.log("project name: " + projects.title);
+		if(err){ 
+			let message =  "Could not find any projects " + err;
+			res.render('error', { message : message} );
+		} else {
+		console.log("project Title: " + projects.title);
+		console.log("project Creator: " + projects.creator);
+		console.log("project Field: " + projects.field);
+		console.log("project Image: " + projects.image);
+		console.log("project Image: " + projects.apiId);
 		res.render('profile', {projects : projects} );
-		console.log("favorite projects");
+		}
 		});
 };
 
-// saving item from api to mongodb
+// saving item from api to mongodb favorite projects
 const savefavoriteProject =  (req, res, next) => {
 	console.log("saving favorites");
-	console.log(req.body);
-	db.Project.create(req.body).then((newfavorites) => {
-		req.flash('success', 'Saved to favorites!');
-	}).catch(next);
-
+	console.log("button id test: " + req.body);
+	// db.Project.create(req.body).then((newfavorites) => {
+	// 	req.flash('success', 'Saved to favorites!');
+	// }).catch(next);
 };
 
 
-// SHOW a single project 
-function getProject(req, res, next) {
-  var id = req.params.id;
-    if (id == "newquote"){
-      console.log("yes, it is a newquote");
-      res.render('newquote');
-    } else {
-    db.Project.findById({_id: id}, function(err, quote) {
-      if(err) {
-        res.json({ message: 'Could not get quote: ' + id });
-      } else {
-        //console.log(res.body);
-        // res.json({quote: quote});
-        res.render('./quotes/edit', {quote: quote});
-      }
-    });
-   }
-}
-
-
-
-// delete project
 const deleteFavorite = (req, res, next) => {
-console.log("delete route");
-
-
-
-  // get book id from url params (`req.params`)
-  console.log("DELETE " + req.body.params);
-  // var bookId = req.params.id;
-  // // find the index of the book we want to remove
-  // db.Book.findOneAndRemove({ _id: bookId })
-  //   .populate('author')
-  //   .exec(function (err, deletedBook) {
-  //   res.json(deletedBook);
-  // });
+	console.log(req.params._id);
+	db.Project.findByIdAndRemove({_id: req.params.id })
+	.then((goByeBye) => {
+		res.render("profile");
+	});
 };
-
-
-// // DELETE
-// function removeQuote(req, res) {
-//   var id = req.params.id;
-//   console.log("hello from removeQuote");
-
-//   Quote.remove({_id: id}, function(err) {
-//     if(err) res.json({message: 'Could not delete quote: ' + err});
-
-//     // res.json({message: 'Quote successfully deleted'});
-//     res.redirect('/quotes');
-//   });
-// }
-
-
-
-
-
-// const savefavoriteProject =  (req, res) => {
-//   var myData = new User(req.body);
-//   myData.save()
-//     .then(item => {
-//       res.send("item saved to database");
-//     })
-//     .catch(err => {
-//       res.status(400).send("unable to save to database");
-//     });
-// };
 
 module.exports = { listOfProjects, favoriteProjects, savefavoriteProject, deleteFavorite };
-
-
-
-
-
-
-// //get searched list of projects from text
-// router.get('/projects/search', function (req, res) {
-// 	console.log('/projects/search is working');
-// 	request(apiUrl, function(error, info, body){
-// 	let searchArray = [];	
-// 		console.log("inside request");
-// 	let projectInfo = JSON.parse(body);
-// 	let PROJECTS = projectInfo.projects;
-// 	for(var i = 0; i < PROJECTS.length; i++){
-// 		let trialArray = PROJECTS[i].owners;
-// 		//console.log(trialArray);
-// 		searchArray.push(trialArray);
-
-// 		}
-// 		console.log(searchArray[4]);
-
-// 		let searchRequest = searchArray.map(search => {
-// 			console.log (search);
-// 			return {
-// 				name : search.first_name
-// 			};
-// 		});	
-
-// 	});
-// 	res.send(searchRequest);
-// });
-
-

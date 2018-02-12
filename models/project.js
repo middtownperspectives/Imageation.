@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 let ProjectSchema = new Schema({
   title: String,
-  apiId: Number,
   creator: String,
   field: String,
-  image: String
+  image: String,
+  apiId: Number
 });
 
 const Project = mongoose.model('Project', ProjectSchema);
