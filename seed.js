@@ -1,6 +1,6 @@
 //Initail database with our basic data for page
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/imageation');
+mongoose.connect("mongodb://heroku_w28wc62h:djjiidscvapqmi195pggg7kodu@ds231758.mlab.com:31758/heroku_w28wc62h"  || 'mongodb://localhost/imageation' );
 const Projects = require("./models/project");
 
 console.log(Projects);

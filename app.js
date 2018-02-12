@@ -6,6 +6,7 @@ const app = express();
 // app.use(morgan('dev')); // back end request monitoring
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json()); // for parsing application/json
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 const mongoose = require('mongoose');

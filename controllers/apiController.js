@@ -61,7 +61,7 @@ const favoriteProjects = (req, res, next) => {
 // saving item from api to mongodb favorite projects
 const savefavoriteProject =  (req, res, next) => {
 	console.log("saving favorites");
-	console.log("button id test: " + req.body);
+	console.log("button id test: " + req);
 	// db.Project.create(req.body).then((newfavorites) => {
 	// 	req.flash('success', 'Saved to favorites!');
 	// }).catch(next);
