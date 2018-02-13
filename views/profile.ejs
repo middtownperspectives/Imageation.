@@ -3,8 +3,13 @@
 <div class="main container clearfix">
 	<div class="row">
 		<div class="col-md-8">
-			<h1 class="display-4">
-				<img id="profileImage" src="images/avatar.png"> Hey You !</h1>
+			<h1 class="display-4"> Hey You !</h1>
+				<div id="shop">
+				    <div class="content">
+						<img id="profileImage" src="images/avatar.png"> 
+				        <a href="#">edit profile</a>
+				    </div>
+				</div>
 			
     <% for(var i=0; i < projects.length; i++) { %>
         <h3> <%= projects[i].title %> </h3>
@@ -34,5 +39,4 @@
 			$.ajax({method: "PUT", url: "/profile/update/"+id, success: alert("The ability to update coming soon!"), });
 		}
 	</script>
-
 <% include ./partials/footer.ejs %>

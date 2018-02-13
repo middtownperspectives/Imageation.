@@ -21,15 +21,16 @@
 </div>
 
 <div class="container">
-  <div class="col-md-3">   
       <h1>Most Recent Projects</h1>
       
         <% for(let i = 0; i < display.length; i++) { %>
         <form action="/profile" method="POST">
-          <article>
+          <article class="img-thumbnail">
               <br>
-              <h2> Title: <input name="title" value="<%= display[i].title %>" </h1>
-              <p> Field: <input name="field" value="<%= display[i].field %>" </p>
+              <h2> <%= display[i].title %> </h1>
+              <h2> <input type=hidden name="title" value="<%= display[i].title %>" </h1>
+              <p> <%= display[i].field %> </p>
+              <p> <input type= hidden name="field" value="<%= display[i].field %>" </p>
               <img src="<%= display[i].image %>" class="img-thumbnail" />
               <img> <input type=hidden name="image" value="<%= display[i].image %>" </img>
               <br>

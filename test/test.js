@@ -29,7 +29,7 @@ describe('Testing Imageation', function(done){
 	it ('should have a sentence in the body', function(done) {
 		request(URL, function(error, apiResponse, apiBody) {
 			//console.log(apiBody);
-			expect(JSON.parse(apiBody).sentence).to.be.a('str');
+			expect(JSON.parse(apiBody).sentence).to.be.a('string');
 			done();
 		});
 		done();
