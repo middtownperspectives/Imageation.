@@ -32,9 +32,8 @@ const listOfProjects = function (req, res, next) {
 				field: project.fields,
 				image: project.covers.original
 			};
+			console.log(project.apiId);
 			}); 
-			console.log(projectRequest[2]);
-			//console.log(projectRequest);
 			res.render('projects.ejs', { display : projectRequest });
 		}
 	});
@@ -42,17 +41,13 @@ const listOfProjects = function (req, res, next) {
 
 // grabbing profile with favorite projects from database
 const favoriteProjects = (req, res, next) => {
+	console.log("grabbing favorites directing to profile");
 	Project.find({}, (err, projects) => {
 		console.log(projects);
 		if(err){ 
 			let message =  "Could not find any projects " + err;
 			res.render('error', { message : message} );
 		} else {
-		console.log("project Title: " + projects.title);
-		console.log("project Creator: " + projects.creator);
-		console.log("project Field: " + projects.field);
-		console.log("project Image: " + projects.image);
-		console.log("project Image: " + projects.apiId);
 		res.render('profile', {projects : projects} );
 		}
 		});
@@ -68,13 +63,21 @@ const savefavoriteProject =  (req, res, next) => {
 	}).catch(next);
 };
 
-
-const deleteFavorite = (req, res, next) => {
-	console.log(req.params._id);
-	db.Project.findByIdAndRemove({_id: req.params.id })
-	.then((goByeBye) => {
-		res.render("profile");
-	});
+//update a favorite's field
+const updateFavorites = (req,res, next) => {
+	console.log("update router");
+	console.log(req.body);
 };
 
-module.exports = { listOfProjects, favoriteProjects, savefavoriteProject, deleteFavorite };
+
+// delete a favorite
+const deleteFavorite = (req, res, next) => {
+	console.log("delete router");
+	console.log(req.params.id);
+	db.Project.findByIdAndRemove({_id: req.params.id })
+	.then((goByeBye) => {
+		res.redirect("/profile");
+	}).catch(next);
+};
+
+module.exports = { listOfProjects, favoriteProjects, savefavoriteProject, updateFavorites, deleteFavorite };

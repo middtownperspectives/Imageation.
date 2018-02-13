@@ -1,21 +1,15 @@
-
 $(document).ready(() => {
+	console.log("main.js is up!");
 
-//this is the initial call to your api for everything you initially need
-// $("#search").on("click", (event) => {
-// 	console.log("search button clicked");
-// 	event.preventDefault();
-// 	$.ajax({
+		//delete function
 
-// 		method: "GET",
-// 		url: "/search"
-// 	})
-// 	.done(res => {
-// 		console.log(res);
-// 	});
-// });
-
-
-
-	console.log("hello world");
+	function deleteFavorites(id) {
+			console.log("delete button clicked!");
+			$.ajax({
+				method: "DELETE",
+				url: "/profile/"+id,
+				success: alert("Item Deleted"),
+				failure: alert("Unable to Delete")
+			});
+		}
 });
