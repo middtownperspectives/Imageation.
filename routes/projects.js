@@ -17,10 +17,10 @@ router.get('/profile', api.favoriteProjects);
 router.post('/profile', api.savefavoriteProject);
 
 //delete favorite project
-router.delete('/profile/delete/:id', api.deleteFavorite);
+router.delete('/profile/:id', api.deleteFavorite);
 
-//get searched list of projects from text
-//router.get('/projects/search', api.searchListOfProjects);
+//update project's field option
+router.put('/profile/update/:id', api.updateFavorites);
 
 
 module.exports = router;

@@ -2,7 +2,7 @@
 /* Base Styles */
 
 body {
-	background: #2E4A62 url('../images/streetart.jpg') no-repeat;
+	background: #2E4A62;
 	background-size: cover; 
 }
 
@@ -109,7 +109,15 @@ a:hover {
 .options .material-icons:hover {
 	color: initial;
 }
-
+#profileImage{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
 .favorite-book {
   margin-top: 30px;
 }

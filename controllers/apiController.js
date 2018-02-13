@@ -32,9 +32,8 @@ const listOfProjects = function (req, res, next) {
 				field: project.fields,
 				image: project.covers.original
 			};
+			console.log(project.apiId);
 			}); 
-			console.log(projectRequest[2]);
-			//console.log(projectRequest);
 			res.render('projects.ejs', { display : projectRequest });
 		}
 	});
@@ -42,17 +41,13 @@ const listOfProjects = function (req, res, next) {
 
 // grabbing profile with favorite projects from database
 const favoriteProjects = (req, res, next) => {
+	console.log("grabbing favorites directing to profile");
 	Project.find({}, (err, projects) => {
 		console.log(projects);
 		if(err){ 
 			let message =  "Could not find any projects " + err;
 			res.render('error', { message : message} );
 		} else {
-		console.log("project Title: " + projects.title);
-		console.log("project Creator: " + projects.creator);
-		console.log("project Field: " + projects.field);
-		console.log("project Image: " + projects.image);
-		console.log("project Image: " + projects.apiId);
 		res.render('profile', {projects : projects} );
 		}
 		});
@@ -61,19 +56,29 @@ const favoriteProjects = (req, res, next) => {
 // saving item from api to mongodb favorite projects
 const savefavoriteProject =  (req, res, next) => {
 	console.log("saving favorites");
-	console.log("button id test: " + req);
-	// db.Project.create(req.body).then((newfavorites) => {
-	// 	req.flash('success', 'Saved to favorites!');
-	// }).catch(next);
+	console.log("button id test: ");
+	console.log(req.body);
+	db.Project.create(req.body).then((newfavorites) => {
+		res.redirect("/profile");
+	}).catch(next);
+};
+
+//update a favorite's field
+const updateFavorites = (req,res, next) => {
+	console.log("update router");
+	console.log(req.body);
 };
 
 
+// delete a favorite
 const deleteFavorite = (req, res, next) => {
-	console.log(req.params._id);
+	console.log("delete router");
+	console.log(req.params.id);
 	db.Project.findByIdAndRemove({_id: req.params.id })
 	.then((goByeBye) => {
-		res.render("profile");
-	});
+		res.send(goByeBye);
+		// res.redirect("/profile");
+	}).catch(next);
 };
 
-module.exports = { listOfProjects, favoriteProjects, savefavoriteProject, deleteFavorite };
+module.exports = { listOfProjects, favoriteProjects, savefavoriteProject, updateFavorites, deleteFavorite };

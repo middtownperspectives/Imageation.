@@ -23,18 +23,20 @@
 <div class="container">
   <div class="col-md-3">   
       <h1>Most Recent Projects</h1>
-      <form action="/profile" method="POST">
+      
         <% for(let i = 0; i < display.length; i++) { %>
+        <form action="/profile" method="POST">
           <article>
               <br>
               <h2> Title: <input name="title" value="<%= display[i].title %>" </h1>
               <p> Field: <input name="field" value="<%= display[i].field %>" </p>
-              <img> <input name="image" value="<%= display[i].image %>" </img>
+              <img src="<%= display[i].image %>" class="img-thumbnail" />
+              <img> <input type=hidden name="image" value="<%= display[i].image %>" </img>
               <br>
-          <button class="btn btn-success" type="submit" id="savebtn" value="<%= display[i].apiId %>"> Inspired </button><br><br>
+          <button class="btn btn-success" type="submit" value="<%= display[i].apiId %>"> Inspired </button><br><br>
           </article>
-        <% } %>
       </form> 
+      <% } %>
   </div>
 </div>
 
