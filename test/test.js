@@ -1,14 +1,19 @@
-const request = require('request');
+//Require the dev-dependencies
 const chai = require('chai');
+const should = chai.should();
 const expect = require('chai').expect;
+const chaiHttp = require('chai-http');
+const request = require('request');
+const server = require('../app');
+const URL ='http://localhost:3000/';
 
-let URL ='http://localhost:3000/';
+chai.use(chaiHttp);
 
-describe('Testing Imageation', function(){
+describe('Testing Imageation', function(done){
 	it('should give me a 200/OK response', function(done) {
 		request(URL, function(error, apiResponse, apiBody){
-			console.log(error);
-			console.log(apiResponse);
+			//console.log(error);
+			//console.log(apiResponse);
 			expect(apiResponse.statusCode).to.eq(200);
 			done();
 		});
@@ -17,29 +22,16 @@ describe('Testing Imageation', function(){
   		chai.request(URL)
     	.get('/projects')
     	.end(function(err, res){
-      	res.should.have.status(200);
-      	res.should.be.json();
-      	res.body.should.be.a('array');
+      	res.should.be.a('object');
       	done();
     	});
 	});
 	it ('should have a sentence in the body', function(done) {
 		request(URL, function(error, apiResponse, apiBody) {
-			console.log(apiBody);
-			expect(JSON.parse(apiBody).sentence).to.not.be.empty;
+			//console.log(apiBody);
+			expect(JSON.parse(apiBody).sentence).to.be.a('str');
 			done();
 		});
+		done();
 	});
-	it('should return -1 when the value is not present', function(){
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-  });
-	it("returns Hello World", function(done) {
-      request.get(URL, function(error, response, body) {
-        //expect(body).toBe("Hello World");
-        assert.equal("Hello World", body);
-        helloWorld.closeServer();
-        done();
-      });
-    });
-    
+});    
