@@ -8,7 +8,7 @@
 			
     <% for(var i=0; i < projects.length; i++) { %>
         <h3> <%= projects[i].title %> </h3>
-        <h3> <%= projects[i].field %>" </h3>
+        <h3> <%= projects[i].field %> </h3>
         <img src="<%= projects[i].image %>" class="img-thumbnail" /><br> 
         <button type="submit" id="<%= projects[i]._id %>" onClick="deleteFavorites(this.id)" class="btn btn-danger" > Delete </button> 
 		<button type="submit" id="<%= projects[i]._id %>" onClick="updateFavorites(this.id)" class="btn btn-info" > Update </button>
@@ -21,9 +21,15 @@
 
     <script > 
       	function deleteFavorites(id) { console.log("delete button clicked!");
-			$.ajax({ method: "DELETE", url: "/profile/"+id, success: alert("Deleted"), });
+			$.ajax({ 
+				method: "DELETE", 
+				url: "/profile/"+id, 
+				// success: alert("Deleted"), 
+				success: function(data){
+					location.reload();
+				}
+			});
 		}
-
 		function updateFavorites(id) {console.log("update button clicked!");
 			$.ajax({method: "PUT", url: "/profile/update/"+id, success: alert("The ability to update coming soon!"), });
 		}

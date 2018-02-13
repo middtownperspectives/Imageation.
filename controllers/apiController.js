@@ -76,7 +76,8 @@ const deleteFavorite = (req, res, next) => {
 	console.log(req.params.id);
 	db.Project.findByIdAndRemove({_id: req.params.id })
 	.then((goByeBye) => {
-		res.redirect("/profile");
+		res.send(goByeBye);
+		// res.redirect("/profile");
 	}).catch(next);
 };
 
