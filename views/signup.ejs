@@ -5,6 +5,14 @@
     <div class="col-md-6 col-md-offset-3">
       <h1 class="display-4 m-b-2">Sign Up</h1>
       <!-- register form-->
+                <!-- flash message -->
+
+            <% if (message.length > 0) { %>
+              <div class="alert alert-danger">
+                <%= message %>
+            </div>
+          <% } %>
+
       <form method="POST" action="/signup">
         <div class="form-group">
           <label for="email">Email:</label>

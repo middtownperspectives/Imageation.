@@ -1,4 +1,5 @@
-var passport = require("passport");
+const passport = require("passport");
+const User     = require('../models/user');
 
 // GET /signup
 function getSignup(request, response, next) {
@@ -39,11 +40,6 @@ function getLogout(request, response, next) {
   response.redirect('/');
 }
 
-// Restricted page
-function secret(request, response, next){
-  response.json({secret: "Woooah secret!"});
-}
-
 // GET /about
 const about = function(req, res, next) {
   return res.render('about', { title: 'About' });
@@ -60,7 +56,6 @@ module.exports = {
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
-  secret: secret,
   about: about,
   contact: contact
 };

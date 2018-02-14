@@ -7,8 +7,8 @@ const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json()); // for parsing application/json
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
+// const cookieParser = require("cookie-parser");
+// app.use(cookieParser());
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -31,24 +31,27 @@ app.set('view engine', 'ejs');
 
 // provides the means for express to save sessions during a users experience...  maintain login and password info
 // also provides a means of providing google analitics with info for user activity
-app.use(session({ secret: "An imageation is everything", resave: true, saveUninitialized: false }));
+app.use(session({secret: 'ImageationIsEverything'}));
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
+
 require('./config/passport')(passport);
 
+//make user id avaiable globally
+app.use(function(req, res, next){
+	//console.log(req);
+	console.log(req.user);
+	res.locals.currentUser = req.user;
+	next();
+});
 
+//requiring routers
 const loginRoutes = require("./routes/index.js");
 app.use(loginRoutes);
 const projectRoutes = require("./routes/projects.js");
 app.use(projectRoutes);
 
-
-//make user id avaiable globally
-app.use(function(req, res, next){
-	res.locals.currentUser = req.session.userId;
-	next();
-});
 
 //----- handling errors when calling routes
 app.use((err, req, res, next) => {
@@ -69,7 +72,7 @@ app.listen(process.env.PORT || 3000, () => {
   console.log('Express server is running on http://localhost:3000/');
 });
 
-exports.closeServer = () => {
-  server.close();
-};
+// exports.closeServer = () => {
+//   server.close();
+// };
 

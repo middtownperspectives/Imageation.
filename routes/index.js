@@ -25,11 +25,7 @@ router.post('/signup', usersController.postSignup);
 router.get('/login', usersController.getLogin);
 router.post('/login', usersController.postLogin);
 
-router.route("/logout")
-  .get(usersController.getLogout);
-
-router.route("/secret")
-  .get(authenticatedUser, usersController.secret);
+router.get("/logout", usersController.getLogout);
 
 // GET /about
 router.get('/about', usersController.about);

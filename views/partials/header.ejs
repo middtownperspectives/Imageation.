@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/styles.css"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <body>
-    <!-- load navbar.jade-->
+    <!-- load navbar. ejs-->
     <nav class="navbar navbar-dark bg-inverse">
   <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" data-toggle="collapse" data-target="#navbar">&#x2630;</button>
   <div class="navbar-nav collapse navbar-toggleable-sm" id="navbar">
@@ -19,7 +19,13 @@
         <a class="nav-item nav-link" href="profile">My Profile</a>
         <a class="nav-item nav-link" href="projects">Search Projects</a>
       </div>
+
+        <% if (currentUser) {%>
+        <a href="/logout"> Logout <%= currentUser.local.email %></a>
+        <% } else { %>
         <a class="btn btn-info pull-md-right" href="login">Sign In</a>
+        <% } %>
+        
     </div>
   </div>
 </nav>
