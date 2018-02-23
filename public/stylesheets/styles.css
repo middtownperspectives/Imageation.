@@ -2,8 +2,8 @@
 /* Base Styles */
 
 body {
-	background: #2E4A62;
-	background-size: cover; 
+	background: #A4BCBF;
+	background-size: cover;
 }
 
 a:hover {
@@ -12,14 +12,14 @@ a:hover {
 
 /* Component Styles */
 #shop{
-    background-repeat: repeat-x;    
+    background-repeat: repeat-x;
     height:300px;
     width: 984px;
     margin-left: 20px;
     margin-top: 13px;
 }
 
-#shop .content{    
+#shop .content{
     width: 182px; /*328 co je 1/3 - 20margin left*/
     height: 121px;
     line-height: 20px;
@@ -79,24 +79,35 @@ a:hover {
 /* Button Styles */
 
 .btn-primary {
-	background: #417aba;
-	border-color: #417aba;
+	background: #654EA3;
+	border-color: #654EA3;
 }
 .btn-info {
-	background-color: #31b0d5;
-	border-color: #2aabd2;
+	background-color: #868F9B;
+	border-color: #868F9B;
 }
+.btn-info-outline {
+	border-color: #654EA3;
+	color: #654EA3;
+}
+
 .btn-info:hover {
-	background-color: #5bc0de;
-	border-color: #5bc0de;
+	background-color: #654EA3;
+	border-color: #654EA3;
 }
 .btn-light {
 	color: rgba(255,255,255, .75);
 	background: rgba(255,255,255, .12);
 }
 .btn-light:hover {
-	background: rgba(255,255,255, .2);	
+	background: rgba(255,255,255, .2);
 }
+.btn-info-outline:hover {
+	background: #654EA3;
+	border-color: #654EA3;
+	color: #fff;
+}
+
 .active,
 .btn {
 	transition: .4s;
@@ -169,7 +180,7 @@ a:hover {
 	}
 }
 
-@media (min-width: 48em) { 
+@media (min-width: 48em) {
 	.navbar {
 		min-height: 70px;
 	}
@@ -185,4 +196,3 @@ a:hover {
 		padding-top: 8rem;
 	}
 }
-
