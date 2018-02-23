@@ -5,14 +5,14 @@
     <div class="col-md-6 col-md-offset-3">
       <h1 class="display-4 m-b-2">Projects
 
-        <!--      Start Search Form        -->      
-
+        <!--      Start Search Form        -->
+<%#
         <form method="GET" action="/projects/search">
           <input class="form-control" id="searchInput" type="text" placeholder="narrow it down" name="search"/>
           <button class="btn btn-secondary" id="search" type="button">Go</button>
-        </form>
-       
-        <!--       End Search Form        -->      
+        </form> %>
+
+        <!--       End Search Form        -->
 
       </h1>
     </div>
@@ -21,7 +21,7 @@
 
 <div class="container">
       <h1>Most Recent Projects</h1>
-      
+
         <% for(let i = 0; i < display.length; i++) { %>
         <form action="/profile" method="POST">
           <article class="img-thumbnail">
@@ -35,7 +35,7 @@
               <br>
           <button class="btn btn-success" type="submit" value="<%= display[i].apiId %>"> Inspired </button><br><br>
           </article>
-      </form> 
+      </form>
       <% } %>
   </div>
 </div>

@@ -16,7 +16,7 @@ var User            = require('../models/user');
   });
 
   passport.use('local-signup', new LocalStrategy({
-     
+
      usernameField : 'email',
      passwordField : 'password',
      passReqToCallback : true
@@ -34,7 +34,6 @@ var User            = require('../models/user');
 				var newUser            = new User();
 				newUser.local.email    = email;
 				newUser.local.password = newUser.encrypt(password);
-
 				newUser.save(function(err) {
 				  if (err) throw err;
 				  return callback(null, newUser);
