@@ -12,6 +12,7 @@ body {
 .readability-styling {
 	background-color: #000;
 	opacity: 0.2;
+	border-radius: 10px;
 }
 a:hover {
 	color: rgba(49,176,213, .7);
