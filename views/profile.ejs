@@ -3,19 +3,24 @@
 <div class="main container clearfix">
 	<div class="row">
 		<div class="col-md-8">
+
+			<% if (currentUser) {%>
+				<h1 class="display-4"> Hey <%= currentUser.local.email %> ! </h1>
+			<% } else { %>
 			<h1 class="display-4"> Hey You !</h1>
+			<% } %>
 				<div id="shop">
 				    <div class="content">
-						<img id="profileImage" src="images/avatar.png"> 
-				        <a href="#">edit profile</a>
+						<img id="profileImage" src="images/avatar.png">
+				        <%# <a href="#">edit profile</a> %>
 				    </div>
 				</div>
-			
+
     <% for(var i=0; i < projects.length; i++) { %>
         <h3> <%= projects[i].title %> </h3>
         <h3> <%= projects[i].field %> </h3>
-        <img src="<%= projects[i].image %>" class="img-thumbnail" /><br> 
-        <button type="submit" id="<%= projects[i]._id %>" onClick="deleteFavorites(this.id)" class="btn btn-danger" > Delete </button> 
+        <img src="<%= projects[i].image %>" class="img-thumbnail" /><br>
+        <button type="submit" id="<%= projects[i]._id %>" onClick="deleteFavorites(this.id)" class="btn btn-danger" > Delete </button>
 		<button type="submit" id="<%= projects[i]._id %>" onClick="updateFavorites(this.id)" class="btn btn-info" > Update </button>
         <br><br>
     <% } %>
@@ -24,12 +29,12 @@
 	</div>
 </div>
 
-    <script > 
+    <script >
       	function deleteFavorites(id) { console.log("delete button clicked!");
-			$.ajax({ 
-				method: "DELETE", 
-				url: "/profile/"+id, 
-				// success: alert("Deleted"), 
+			$.ajax({
+				method: "DELETE",
+				url: "/profile/"+id,
+				// success: alert("Deleted"),
 				success: function(data){
 					location.reload();
 				}
