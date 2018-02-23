@@ -6,12 +6,12 @@ body {
 	background-size: cover;
 }
 .home-background {
-	background: url("https://placeimg.com/1920/1080/nature");
+	background: url("https://placeimg.com/1920/1080/arc");
 	background-repeat: no-repeat;
 }
 .readability-styling {
 	background-color: #000;
-	opacity: 0.2;
+	opacity: 0.5;
 	border-radius: 10px;
 }
 a:hover {
