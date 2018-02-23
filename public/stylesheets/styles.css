@@ -8,11 +8,13 @@ body {
 .home-background {
 	background: url("https://placeimg.com/1920/1080/nature");
 	background-repeat: no-repeat;
+	color: #fff;
 }
 .readability-styling {
 	background-color: #000;
 	opacity: 0.2;
 	border-radius: 10px;
+	color: #fff;
 }
 a:hover {
 	color: rgba(49,176,213, .7);
