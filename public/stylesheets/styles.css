@@ -6,8 +6,9 @@ body {
 	background-size: cover;
 }
 .home-background {
-	background: url("https://placeimg.com/1920/1080/nature");
+	background: url('../images/thougthful-mountains.png');
 	background-repeat: no-repeat;
+	background-size: cover;
 	color: #fff;
 }
 .readability-styling {
