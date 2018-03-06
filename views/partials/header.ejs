@@ -7,27 +7,30 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"/>
   <link rel="stylesheet" type="text/css" href="stylesheets/styles.css"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <body>
-    <!-- load navbar. ejs-->
-    <nav class="navbar navbar-dark bg-inverse">
-  <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" data-toggle="collapse" data-target="#navbar">&#x2630;</button>
-  <div class="navbar-nav collapse navbar-toggleable-sm" id="navbar">
+  <link rel="icon" type="image/ico" href="images/apeture-favicon.ico" />
+  <!-- <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16"> -->
+</head>
+<body>
+  <!-- load navbar. ejs-->
+  <nav class="navbar navbar-dark bg-inverse">
+    <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" data-toggle="collapse" data-target="#navbar">&#x2630;</button>
+    <div class="navbar-nav collapse navbar-toggleable-sm" id="navbar">
     <div class="container"><a class="navbar-brand" href="/"><i class="icn-logo material-icons">camera</i>Imageation</a>
-      <div class="nav-items ">
-        <a class="nav-item nav-link" href="signup">Sign Up</a>
-        <a class="nav-item nav-link" href="about">About</a>
-        <a class="nav-item nav-link" href="profile"> Inspiration </a>
-        <a class="nav-item nav-link" href="projects"> Projects </a>
-      </div>
+    <div class="nav-items ">
+      <a class="nav-item nav-link" href="signup">Sign Up</a>
+      <a class="nav-item nav-link" href="about">About</a>
+      <a class="nav-item nav-link" href="profile"> Inspiration </a>
+      <a class="nav-item nav-link" href="projects"> Projects </a>
+    </div>
 
-        <% if (currentUser) {%>
-        <a href="/logout"> Logout <%= currentUser.local.email %></a>
-        <% } else { %>
-        <a class="btn btn-info pull-md-right" href="login">Sign In</a>
-        <% } %>
+      <% if (currentUser) {%>
+      <a href="/logout"> Logout <%= currentUser.local.email %></a>
+      <% } else { %>
+      <a class="btn btn-info pull-md-right" href="login">Sign In</a>
+      <% } %>
 
     </div>
-  </div>
-</nav>
+    </div>
+  </nav>
     <!-- content block-->
     <!-- footer-->
