@@ -1,4 +1,4 @@
-# Project2-Imageation
+# Imageation
 
 An application folks can utilize to use images as sources of inspiration. 
 
@@ -28,7 +28,7 @@ more to come...
   [node.js](https://nodejs.org/en/) . 
   [javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) . 
   [bootstrap](http://getbootstrap.comc) . 
-  [pug](https://pugjs.org/api/getting-started.html) . 
+  [ejs](http://ejs.co) . 
   [css](https://developer.mozilla.org/en-US/docs/Web/CSS) .  
   [html](https://developer.mozilla.org/en-US/docs/Web/HTML)
 ### Additional APIs to come:
