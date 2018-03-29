@@ -6,17 +6,18 @@ body {
 	background-size: cover;
 }
 .home-background {
-	background: url('../images/thougthful-mountains.png');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), #222), url('../images/thougthful-mountains.jpg');
 	background-repeat: no-repeat;
+	background-position: center;
 	background-size: cover;
-	color: #fff;
 }
-.readability-styling {
+
+/*.readability-styling {
 	background-color: #000;
 	opacity: 0.2;
 	border-radius: 10px;
 	color: #fff;
-}
+}*/
 a:hover {
 	color: rgba(49,176,213, .7);
 }
@@ -75,6 +76,12 @@ a:hover {
 	color: #654EA3;
 }
 
+.btn-info-outline-white {
+	margin-top: 2%;
+	border-color: #fff;
+	color: #fff;
+}
+
 .btn-info:hover {
 	background-color: #654EA3;
 	border-color: #654EA3;
@@ -86,7 +93,8 @@ a:hover {
 .btn-light:hover {
 	background: rgba(255,255,255, .2);
 }
-.btn-info-outline:hover {
+.btn-info-outline:hover,
+.btn-info-outline-white:hover {
 	background: #654EA3;
 	border-color: #654EA3;
 	color: #fff;
