@@ -3,9 +3,17 @@
 <div class="home-background">
 <div class="main container text-xs-center">
   <div class="readability-styling">
-  <h1 class="display-3">Need some inspiration?</h1>
+
+  	  <% if (currentUser) {%>
+        <h1 class="display-3"> Your Inspiration </h1>
+  		<a class="btn btn-info-outline-white btn-lg" href="/profile">Here</a>
+      <% } else { %>
+        <h1 class="display-3">Need some inspiration?</h1>
+  		<a class="btn btn-info-outline-white btn-lg" href="/signup">Get Started</a>
+      <% } %>
+
+
   </div>
-  <a class="btn btn-info-outline-white btn-lg" href="/signup">Get Started</a>
 </div>
 
 </div>

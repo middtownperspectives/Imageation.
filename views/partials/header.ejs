@@ -17,7 +17,11 @@
     <div class="navbar-nav collapse navbar-toggleable-sm" id="navbar">
     <div class="container"><a class="navbar-brand" href="/"><i class="icn-logo material-icons">camera</i>Imageation</a>
     <div class="nav-items ">
+      <% if (currentUser) {%>
+      <a href="#"> </a>
+      <% } else { %>
       <a class="nav-item nav-link" href="signup">Sign Up</a>
+      <% } %>
       <a class="nav-item nav-link" href="about">About</a>
       <a class="nav-item nav-link" href="profile"> Inspiration </a>
       <a class="nav-item nav-link" href="projects"> Projects </a>
